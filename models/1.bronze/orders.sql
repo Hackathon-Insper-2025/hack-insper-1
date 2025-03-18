@@ -1,1 +1,0 @@
-select * from {{ source('dex-dsm-production-dex_landing', 'teste_insper_data_1__postgres_ecommerce_db_orders') }}
