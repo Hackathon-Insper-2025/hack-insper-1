@@ -1,6 +1,6 @@
 SELECT 
-    category,
-    ROUND(SUM(preco + frete), 2) AS total_price
+    product_category_name AS category,
+    ROUND(SUM(price + freight_value), 2) AS total_price
 FROM {{ ref('fat_category') }}
-WHERE category IS NOT NULL AND TRIM(category) <> ''
 GROUP BY category
+HAVING category IS NOT NULL AND TRIM(category) <> ''
