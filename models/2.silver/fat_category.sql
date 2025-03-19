@@ -6,4 +6,3 @@ INNER JOIN {{ ref('order_items') }} as oi USING(product_id)
 GROUP BY product_category_name
 HAVING p.product_category_name IS NOT NULL
     AND TRIM(p.product_category_name) <> ''
-ORDER BY total_price DESC
