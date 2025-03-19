@@ -8,6 +8,15 @@ sources:
   database: dex-hackathon-group-1
   schema: dex_landing
   tables:
+  - name: base_g1__postgres_ecommerce_db_customers
+  - name: base_g1__postgres_ecommerce_db_geolocation
+  - name: base_g1__postgres_ecommerce_db_order_items
+  - name: base_g1__postgres_ecommerce_db_order_payments
+  - name: base_g1__postgres_ecommerce_db_order_reviews
+  - name: base_g1__postgres_ecommerce_db_orders
+  - name: base_g1__postgres_ecommerce_db_product_category_name_translation
+  - name: base_g1__postgres_ecommerce_db_products
+  - name: base_g1__postgres_ecommerce_db_sellers
   - name: teste_insper_data_1__postgres_ecommerce_db_customers
   - name: teste_insper_data_1__postgres_ecommerce_db_geolocation
   - name: teste_insper_data_1__postgres_ecommerce_db_order_items
