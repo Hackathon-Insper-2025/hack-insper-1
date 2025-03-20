@@ -1,7 +1,6 @@
 SELECT 
     product_category_name AS category, 
     COUNT(order_id) AS total_sold,
-
 FROM {{ ref('fat_category') }} 
 WHERE order_delivered_customer_date IS NOT NULL  
 GROUP BY product_category_name
