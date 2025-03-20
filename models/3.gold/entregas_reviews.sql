@@ -8,4 +8,3 @@ SELECT
 FROM {{ ref('fat_category') }}
 GROUP BY review_score, status_entrega
 ORDER BY review_score DESC, status_entrega
-

@@ -15,4 +15,3 @@ FROM {{ ref('products') }} AS p
     INNER JOIN {{ ref('order_items') }} AS oi USING(product_id)
     INNER JOIN {{ ref('orders') }} AS o USING(order_id)
     INNER JOIN {{ref('order_reviews')}} as ore USING(order_id) 
-

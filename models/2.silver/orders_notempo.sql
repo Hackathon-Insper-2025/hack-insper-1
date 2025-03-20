@@ -7,4 +7,3 @@ SELECT
     oi.price
 FROM {{ ref('orders') }} as o
     INNER JOIN {{ref('order_items')}} as oi USING(order_id)
-    
