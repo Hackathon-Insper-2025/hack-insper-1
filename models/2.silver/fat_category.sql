@@ -10,8 +10,10 @@ SELECT
     o.order_purchase_timestamp,
     o.order_delivered_customer_date,
     order_estimated_delivery_date,
-    ore.review_score
+    ore.review_score,
+    regexp_extract(customer_id,r'^.{0,3}') as customer_id
 FROM {{ ref('products') }} AS p
     INNER JOIN {{ ref('order_items') }} AS oi USING(product_id)
     INNER JOIN {{ ref('orders') }} AS o USING(order_id)
-    INNER JOIN {{ref('order_reviews')}} as ore USING(order_id) 
+    INNER JOIN {{ref('order_reviews')}} as ore USING(order_id)
+    INNER JOIN {{ref('customers')}} as c USING(customer_id)
