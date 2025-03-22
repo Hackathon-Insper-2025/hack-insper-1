@@ -9,12 +9,9 @@ sources:
   schema: dex_landing
   tables:
   - name: base_g1__postgres_ecommerce_db_customers
-  - name: base_g1__postgres_ecommerce_db_customers_2025_03_22_0a0206edbb7645d59570bf2de01e8f04_temp
   - name: base_g1__postgres_ecommerce_db_geolocation
   - name: base_g1__postgres_ecommerce_db_order_items
-  - name: base_g1__postgres_ecommerce_db_order_items_2025_03_22_4c791dfda4af473ea75bdaa5cfecd5db_temp
   - name: base_g1__postgres_ecommerce_db_order_payments
-  - name: base_g1__postgres_ecommerce_db_order_payments_2025_03_22_9f2a7edbcd0748608494bda32145192e_temp
   - name: base_g1__postgres_ecommerce_db_order_reviews
   - name: base_g1__postgres_ecommerce_db_orders
   - name: base_g1__postgres_ecommerce_db_product_category_name_translation
