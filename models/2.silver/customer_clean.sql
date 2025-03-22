@@ -1,5 +1,6 @@
 SELECT 
-    customer_zip_code_prefix, 
-    regexp_extract(customer_id,r'^.{0,3}') as customer_id, 
-    customer_unique_id, customer_city, customer_state
+    COUNT(customer_id) as num, 
+    customer_unique_id
 FROM {{ ref('customers') }}
+GROUP BY customer_unique_id
+ORDER BY num DESC
