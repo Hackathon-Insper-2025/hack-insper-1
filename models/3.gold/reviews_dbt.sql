@@ -1,5 +1,5 @@
 SELECT 
-    review_id, 
+    DISTINCT review_id, 
     review_score, 
     review_comment_message
 FROM 
