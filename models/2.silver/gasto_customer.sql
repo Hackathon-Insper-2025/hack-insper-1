@@ -1,7 +1,7 @@
 SELECT 
   c.customer_unique_id,
   c.customer_id,
-  c.customer_state,
+  c.customer_state as estado,
   c.customer_zip_code_prefix,
   AVG(g.geolocation_lat) AS latitude,
   AVG(g.geolocation_lng) AS longitude,

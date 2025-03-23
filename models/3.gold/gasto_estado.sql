@@ -4,4 +4,4 @@ SELECT
   AVG(latitude) AS latitude,
   AVG(longitude) AS longitude
 FROM {{ ref('gasto_customer') }}
-GROUP BY customer_state
+GROUP BY estado
