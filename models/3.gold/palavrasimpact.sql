@@ -16,4 +16,3 @@ WHERE palavra NOT IN ('o', 'a', 'e', 'de', 'do', 'da', 'que', 'em', 'é', '.', '
     AND LENGTH(palavra) > 2
 GROUP BY palavra
 ORDER BY ocorrencias DESC
-LIMIT 50
