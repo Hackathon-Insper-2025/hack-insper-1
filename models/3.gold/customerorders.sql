@@ -1,8 +1,8 @@
 SELECT
   *,
   CASE 
-    WHEN ticket_medio < 10 THEN 'Baixo (<10)'
-    WHEN ticket_medio BETWEEN 10 AND 100 THEN 'Médio (10-100)'
+    WHEN ticket_medio < 50 THEN 'Baixo (<50)'
+    WHEN ticket_medio BETWEEN 50 AND 300 THEN 'Médio (50-300)'
     ELSE 'Alto (>300)'
   END AS faixa_ticket
 FROM (
