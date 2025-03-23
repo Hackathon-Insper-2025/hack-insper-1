@@ -1,25 +1,45 @@
-# import pandas as pd
-# # from sklearn.model_selection import train_test_split
-# # from sklearn.linear_model import LogisticRegression
-# # from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+import pandas as pd
+import re
+from sklearn.feature_extraction.text import CountVectorizer
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
-# def model(dbt, session):
-#     table_name = dbt.ref('reviews_dbt')
+# Baixa as stopwords da primeira vez (deX pode usar cache)
+nltk.download("punkt")
+nltk.download("stopwords")
 
-#     df = session.table(table_name).to_pandas()
-#     return df
-
-import sys
-
-param1 = sys.argv[1]
-param2 = sys.argv[2]
-
-print(f"Parameter 1: {param1}")
-print(f"Parameter 2: {param2}")
-
-import os
+def clean_text(text):
+    if not isinstance(text, str):
+        return ""
+    text = re.sub(r'[^\w\s]', '', text.lower())  # remove pontuação
+    return text
 
 def model(dbt, session):
-    table_name = os.getenv('table_name', 'default_table_name')
+    # Tabela com os comentários e notas
+    table_name = dbt.ref("reviews_dbt")  
     df = session.table(table_name).to_pandas()
-    return df
+
+    # Limpeza básica
+    df["clean_comment"] = df["review_comment_message"].apply(clean_text)
+    df = df[df["clean_comment"].str.strip() != ""]
+
+    # Tokenização e filtragem
+    stop_words = set(stopwords.words("portuguese"))
+    df["tokens"] = df["clean_comment"].apply(
+        lambda x: [word for word in word_tokenize(x) if word not in stop_words]
+    )
+
+    # Explodindo tokens
+    exploded = df.explode("tokens")
+
+    # Agrupando por palavra
+    result = exploded.groupby("tokens").agg(
+        ocorrencias=("tokens", "count"),
+        media_nota=("review_score", "mean")
+    ).reset_index().rename(columns={"tokens": "palavra"})
+
+    # Ordenar por frequência
+    result = result.sort_values(by="ocorrencias", ascending=False).head(50)
+
+    return result
