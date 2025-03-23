@@ -9,19 +9,15 @@ sources:
   schema: dex_landing
   tables:
   - name: base_g1__postgres_ecommerce_db_customers
-  - name: base_g1__postgres_ecommerce_db_customers_2025_03_23_8f558ca1759a448c935296efac0bab7d_temp
   - name: base_g1__postgres_ecommerce_db_customers_2025_03_23_a1423d03575344d0be9f388edf2bee24_temp
   - name: base_g1__postgres_ecommerce_db_geolocation
   - name: base_g1__postgres_ecommerce_db_geolocation_2025_03_23_503c61f00d0049708b49549e87950d09_temp
   - name: base_g1__postgres_ecommerce_db_order_items
   - name: base_g1__postgres_ecommerce_db_order_items_2025_03_23_2e0777e963834d9cb7d3d1cd4bdf9dbb_temp
-  - name: base_g1__postgres_ecommerce_db_order_items_2025_03_23_95c66a3296bd46b48c53da8377e72c4f_temp
   - name: base_g1__postgres_ecommerce_db_order_payments
   - name: base_g1__postgres_ecommerce_db_order_payments_2025_03_23_8a4a4ca8c3d44a018035aec1998b1b48_temp
-  - name: base_g1__postgres_ecommerce_db_order_payments_2025_03_23_91470b2afb7949e080c650e47bea6844_temp
   - name: base_g1__postgres_ecommerce_db_order_reviews
   - name: base_g1__postgres_ecommerce_db_order_reviews_2025_03_23_3ba6013619cf4cfd999ef83bbf2acfa8_temp
-  - name: base_g1__postgres_ecommerce_db_order_reviews_2025_03_23_9f7f8dfbf75a4070ab64a307c93900b4_temp
   - name: base_g1__postgres_ecommerce_db_orders
   - name: base_g1__postgres_ecommerce_db_orders_2025_03_23_0ed66e34f86c4c0b9616a56190113b14_temp
   - name: base_g1__postgres_ecommerce_db_product_category_name_translation
