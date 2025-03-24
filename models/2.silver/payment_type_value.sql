@@ -1,6 +1,6 @@
 SELECT 
-    payment_type AS forma_pagamento,
-    payment_value AS valor_compra
+    payment_type,
+    payment_value
 FROM 
     {{ref('order_payments')}}
 WHERE 

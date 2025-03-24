@@ -1,0 +1,120 @@
+version: 2
+
+models:
+  - name: orders
+    columns:
+      - name: order_id
+        description: "The ID of the order"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "The ID of the customer who placed the order"
+        tests:
+          - not_null
+      - name: order_status
+        description: "The status of the order"
+        tests:
+          - not_null
+      - name: order_purchase_timestamp
+        description: "The timestamp when the order was purchased"
+        tests:
+          - not_null
+      - name: order_estimated_delivery_date
+        description: "The estimated delivery date of the order"
+        tests:
+          - not_null
+
+  - name: order_items
+    columns:
+      - name: order_item_id
+        description: "The ID of the item in the order"
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: "The ID of the order containing the item"
+        tests:
+          - not_null
+      - name: product_id
+        description: "The ID of the product in the order"
+        tests:
+          - not_null
+      - name: seller_id
+        description: "The ID of the seller of the item"
+        tests:
+          - not_null
+      - name: shipping_limit_date
+        description: "The shipping limit date for the item"
+        tests:
+          - not_null
+
+  - name: order_reviews
+    columns:
+      - name: review_id
+        description: "The ID of the review in the order"
+        tests:
+          - not_null
+          - unique
+      - name: order_id
+        description: "The ID of the order being reviewed"
+        tests:
+          - not_null
+
+  - name: order_payments
+    columns:
+      - name: payment_value
+        description: "The price paid for the order (installment)"
+        tests:
+          - not_null
+      - name: order_id
+        description: "The ID of the order associated with the payment"
+        tests:
+          - not_null
+
+  - name: products
+    columns:
+      - name: product_id
+        description: "The ID of the product in the order"
+        tests:
+          - not_null
+          - unique
+
+  - name: sellers
+    columns:
+      - name: seller_id
+        description: "The ID of the seller"
+        tests:
+          - not_null
+          - unique
+
+  - name: customers
+    columns:
+      - name: customer_id
+        description: "The ID of the customer"
+        tests:
+          - not_null
+          - unique
+      - name: customer_unique_id
+        description: "The unique ID of the customer"
+        tests:
+          - not_null
+      - name: customer_city
+        description: "The city of the customer"
+        tests:
+          - not_null
+      - name: customer_state
+        description: "The state of the customer"
+        tests:
+          - not_null
+
+  - name: geolocation
+    columns:
+      - name: geolocation_lat
+        description: "The latitude of the geolocation"
+        tests:
+          - not_null
+      - name: geolocation_lng
+        description: "The longitude of the geolocation"
+        tests:
+          - not_null

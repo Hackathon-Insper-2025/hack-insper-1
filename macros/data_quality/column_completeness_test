@@ -1,0 +1,31 @@
+{% test column_completeness_test(model, column_name, origin_model, origin_column) %}
+
+
+with validation as (
+
+    select
+        o.{{ origin_column }},
+        m.{{ column_name }} as match_value 
+    from
+      {{ ref(origin_model) }} o
+        LEFT JOIN
+      {{ model }} m
+          ON o.{{ origin_column }} = m.{{ column_name }}
+    where
+      o.{{ origin_column }} is not null
+
+),
+
+validation_errors as (
+
+    select
+      {{ origin_column }}
+    from validation
+    where match_value is null
+
+)
+
+select *
+from validation_errors
+
+{% endtest %}
