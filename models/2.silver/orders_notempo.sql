@@ -4,6 +4,6 @@ SELECT
     o.customer_id,
     oi.order_item_id,
     o.order_purchase_timestamp,
-    oi.price
+    oi.price, 
 FROM {{ ref('orders') }} as o
     INNER JOIN {{ref('order_items')}} as oi USING(order_id)

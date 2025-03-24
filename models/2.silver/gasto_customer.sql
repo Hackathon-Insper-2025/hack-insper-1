@@ -5,7 +5,7 @@ SELECT
   c.customer_zip_code_prefix,
   AVG(g.geolocation_lat) AS latitude,
   AVG(g.geolocation_lng) AS longitude,
-  SUM(oi.price) AS total_gasto
+  SUM(oi.price + oi.freight_value) AS total_gasto
 FROM {{ ref('customers') }} AS c
 JOIN {{ ref('orders') }} AS o USING (customer_id)
 JOIN {{ ref('order_items') }} AS oi USING (order_id)
