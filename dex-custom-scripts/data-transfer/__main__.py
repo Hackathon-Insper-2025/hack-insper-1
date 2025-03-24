@@ -37,9 +37,3 @@ def model(dbt, session):
 
     return result
 
-# ===== EXECUTA AUTOMATICAMENTE QUANDO RODAR O SCRIPT =====
-if __name__ == "__main__":
-    from dex.dbt_context import get_dbt_context  # Suporte ao contexto no deX
-    dbt, session = get_dbt_context()
-    result = model(dbt, session)
-    print(result)  # Pode ser omitido se a plataforma já captura o retorno
