@@ -1,4 +1,4 @@
-SELECT 
+SELECT  
     COUNT(customer_id) as num, 
     customer_unique_id
 FROM {{ ref('customers') }}
