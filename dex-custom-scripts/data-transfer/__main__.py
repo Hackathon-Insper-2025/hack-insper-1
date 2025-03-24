@@ -1,39 +1,35 @@
 import pandas as pd
-import re
-from sklearn.feature_extraction.text import CountVectorizer
-import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
+import nltk
 
-nltk.download("punkt")
-nltk.download("stopwords")
-
-def clean_text(text):
-    if not isinstance(text, str):
-        return ""
-    text = re.sub(r'[^\w\s]', '', text.lower())
-    return text
+nltk.download('punkt')
+nltk.download('stopwords')
 
 def model(dbt, session):
-    table_name = dbt.ref("reviews_dbt")
-    df = session.table(table_name).to_pandas()
+    # Puxa a tabela de reviews limpa (silver)
+    reviews_df = session.table(dbt.ref("review")).to_pandas()
 
-    df["clean_comment"] = df["review_comment_message"].apply(clean_text)
-    df = df[df["clean_comment"].str.strip() != ""]
+    # Pré-processamento simples
+    words_data = []
+    stop_words = set(stopwords.words('portuguese'))
 
-    stop_words = set(stopwords.words("portuguese"))
-    df["tokens"] = df["clean_comment"].apply(
-        lambda x: [word for word in word_tokenize(x) if word not in stop_words]
+    for _, row in reviews_df.iterrows():
+        tokens = word_tokenize(str(row["review_comment_message"]).lower())
+        tokens = [t for t in tokens if t.isalpha() and t not in stop_words]
+
+        for token in tokens:
+            words_data.append((token, row["review_score"]))
+
+    df = pd.DataFrame(words_data, columns=["palavra", "nota"])
+    
+    # Agrega
+    result = (
+        df.groupby("palavra")
+        .agg(ocorrencias=("palavra", "count"), media_nota=("nota", "mean"))
+        .reset_index()
+        .sort_values(by="ocorrencias", ascending=False)
     )
 
-    exploded = df.explode("tokens")
-
-    result = exploded.groupby("tokens").agg(
-        ocorrencias=("tokens", "count"),
-        media_nota=("review_score", "mean")
-    ).reset_index().rename(columns={"tokens": "palavra"})
-
-    result = result.sort_values(by="ocorrencias", ascending=False).head(50)
-
+    # ✅ aqui é o retorno final — a deX salva isso como uma tabela
     return result
-
